@@ -43,7 +43,7 @@ const A: FC<IProps> = () => {
     // Заміна значення параметра 'name'
     function setQuery3() {
         setQuery(prev => {
-            query.set('name', 'thirdName'); // Заміна значення параметра 'query'
+            query.set('name', `${prev.get('name')}-plus`); // Заміна значення параметра 'name' та додавання 'thirdName'
             return query;
         })
     }
@@ -76,9 +76,14 @@ const A: FC<IProps> = () => {
         console.log(nameFromQuery)
         return setQueryPrint(nameFromQuery)
     }
-    const newName = query.get('name');
-    const newAge = setQuery({age: '20'});
+    // const newName = query.get('name');
+    // const newName = query.append('name');
+    // const newAge = setQuery({age: '20'});
+    const newName1 = query.has('name'); // Перевіряє тільки параметр 'name' у запиті
+    // const newName = query.set('name', 'newValue');
 
+    console.log(newName1)
+    // console.log(newName)
 
     return (
         <div>
