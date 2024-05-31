@@ -67,7 +67,7 @@ const A: FC<IProps> = () => {
     function setQuery6() {
         const categories = query.getAll('name');
         console.log(categories)
-        return setQueryPrint(JSON.stringify(categories))
+        return setQueryPrintMany(categories)
     }
 
     //Отримати значення 'query
