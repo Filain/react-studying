@@ -1,33 +1,29 @@
-import {FC, PropsWithChildren} from "react";
+import {FC, PropsWithChildren, useState} from "react";
 
 interface IProps extends PropsWithChildren {
 
 }
 
 const App: FC<IProps> = () => {
+    // const [state, setState] = useState<string>('initialState');
+    /*
+    state – це змінна, яка містить поточний стан.
+    setState – це функція, яка оновлює стан.
+    initialState – це початкове значення стану, яке можна передати як аргумент в useState.
+    */
+
+    // Побічні ефекти використання useState
+    // 1) Перерендеринг компонента і дочірніх компонентів забезпечуючи відображення актуального стану у користувацькому інтерфейсі.
+    // 2) Ізоляція стану компонента: Кожен виклик useState ізольований для окремого екземпляра компонента. Це означає,
+    // що оновлення стану в одному компоненті не впливає на інші екземпляри того ж самого компонента.
+    const [count, setCount] = useState<number>(0);
+
     return (
         <div>
-          {/*          1 ) npx create-react-app . --template typescript - створить проект  в пустому*/}
-          {/*          2) .gitignore додаємо .idea*/}
-          {/*          3) Видаляємо:*/}
-          {/*                        src/App.css*/}
-          {/*                        src/App.test.tsx*/}
-          {/*                        src/index.css - тут під вопросом, але видаляємо*/}
-          {/*                        src/logo.svg*/}
-          {/*                        src/reportWebVitals.ts*/}
-          {/*                        src/setupTests.ts*/}
-          {/*          4) src/index.tsx*/}
-          {/*                 root.render(<App/>);*/}
-          {/*          5) src/App.tsx*/}
-          {/*                       const App = () => {*/}
-          {/*                       return (*/}
-          {/*                       <div>*/}
-          {/*                       App*/}
-          {/*                       </div>*/}
-          {/*                        );*/}
-          {/*        };*/}
-          {/*          export {App};*/}
-          {/*          7) tsconfig.json-> "strictNullChecks": false*/}
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>
+                Click me
+            </button>
         </div>
     );
 };
