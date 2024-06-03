@@ -32,6 +32,8 @@ const B: FC<IProps> = () => {
     */
 
 
+    // TODO useReducer !!!
+
 
 
     const [count, setCount] = useState<number>(0);
