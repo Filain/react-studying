@@ -1,4 +1,6 @@
 import {FC, PropsWithChildren, useState} from "react";
+import {B} from "./B";
+
 
 interface IProps extends PropsWithChildren {
 
@@ -24,6 +26,8 @@ const App: FC<IProps> = () => {
             <button onClick={() => setCount(count + 1)}>
                 Click me
             </button>
+            <hr/>
+            <B/>
         </div>
     );
 };
