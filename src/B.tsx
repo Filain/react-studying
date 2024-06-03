@@ -32,8 +32,9 @@ const B: FC<IProps> = () => {
     */
 
 
-    // TODO  useReducer !!!
-
+    /* TODO  useReducer !!!
+      useReducer - declares a state variable with the update logic inside a reducer function.
+      https://react.dev/reference/react/useReducer */
 
 
     const [count, setCount] = useState<number>(0);
