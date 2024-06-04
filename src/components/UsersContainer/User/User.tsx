@@ -2,10 +2,12 @@ import {FC, PropsWithChildren} from "react";
 import {IUser} from "../../../interfaces/userInterface";
 
 interface IProps extends PropsWithChildren {
-user: IUser
+    user: IUser
+    click: (id: number) => Promise<void>
+
 }
 
-const User: FC<IProps> = ({user}) => {
+const User: FC<IProps> = ({user, click}) => {
     const {id, name, username, email, phone} = user
     return (
         <div>
@@ -14,6 +16,7 @@ const User: FC<IProps> = ({user}) => {
             <div>username: {username}</div>
             <div>email: {email}</div>
             <div>phone: {phone}</div>
+            <button onClick={() => click(id)}>Details</button>
             <br/>
         </div>
     );
