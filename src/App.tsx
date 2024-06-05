@@ -1,35 +1,50 @@
 import {FC, PropsWithChildren} from "react";
+import {useForm} from "react-hook-form";
 
 interface IProps extends PropsWithChildren {
 
 }
 
+interface IFormData {
+    firstName: string;
+    lastName: string;
+    adress: {
+        street: string,
+        house: string
+
+    }
+
+}
+
+
 const App: FC<IProps> = () => {
+    /*
+    1) npm install react-hook-form
+    2) import {useForm} from "react-hook-form";
+    3) const {register, handleSubmit, reset,} = useForm<IFormData>()
+
+register - щоб react-hook-form міг відслідковувати його значення і валідацію.
+handleSubmit - приймає функцію, яка буде викликана при успішному поданні форми. Ця функція отримує значення полів форми як аргумент..
+reset - для скидання полів форми.
+
+     */
+    const {register, handleSubmit, reset,} = useForm<IFormData>()
+
+const save = (data: IFormData) => {
+    console.log(data)
+    reset()
+}
+
     return (
-        <div>
-          {/*          1 ) npx create-react-app . --template typescript - створить проект  в пустому*/}
-          {/*          2) .gitignore додаємо .idea*/}
-          {/*          3) Видаляємо:*/}
-          {/*                        src/App.css*/}
-          {/*                        src/App.test.tsx*/}
-          {/*                        src/index.css - тут під вопросом, але видаляємо*/}
-          {/*                        src/logo.svg*/}
-          {/*                        src/reportWebVitals.ts*/}
-          {/*                        src/setupTests.ts*/}
-          {/*          4) src/index.tsx*/}
-          {/*                 root.render(<App/>);*/}
-          {/*          5) src/App.tsx*/}
-          {/*                       const App = () => {*/}
-          {/*                       return (*/}
-          {/*                       <div>*/}
-          {/*                       App*/}
-          {/*                       </div>*/}
-          {/*                        );*/}
-          {/*        };*/}
-          {/*          export {App};*/}
-          {/*          7) tsconfig.json-> "strictNullChecks": false*/}
-        </div>
-    );
+        <form onSubmit={handleSubmit(save)}>
+<input type={"text"} placeholder={'firstName'} {...register('firstName')}/>
+<input type={"text"} placeholder={'lastName'} {...register('lastName')}/>
+<input type={"text"} placeholder={'adress'} {...register('adress.street')}/>
+<input type={"text"} placeholder={'adress'} {...register('adress.house')}/>
+
+<button>Submit</button>
+        </form>
+    )
 };
 
 export {App};
