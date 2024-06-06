@@ -23,9 +23,11 @@ const App: FC<IProps> = () => {
     2) import {useForm} from "react-hook-form";
     3) const {register, handleSubmit, reset,} = useForm<IFormData>()
 
-register - щоб react-hook-form міг відслідковувати його значення і валідацію.
+
 handleSubmit - приймає функцію, яка буде викликана при успішному поданні форми. Ця функція отримує значення полів форми як аргумент..
 reset - для скидання полів форми.
+register - щоб react-hook-form міг відслідковувати його значення і валідацію.
+{...register('adress.house')} - adress.house  назва поля в вихідному обєкті
 
      */
     const {register, handleSubmit, reset,} = useForm<IFormData>()
