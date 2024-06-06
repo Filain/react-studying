@@ -1,5 +1,7 @@
 import {FC, PropsWithChildren} from "react";
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {myValidator} from "./validators/validator";
 
 interface IProps extends PropsWithChildren {
 
@@ -11,9 +13,7 @@ interface IFormData {
     adress: {
         street: string,
         house: string
-
     }
-
 }
 
 
@@ -76,10 +76,35 @@ formState:{errors} - повертає об'єкт помилок валідац�
 {errors.firstName && <p>{errors.firstName.message}</p>}
 {errors.price && <p>{errors.price.message}</p>}
 
+-------------------------------------------------------------------------------------------------------------------------------------
+1) npm install @hookform/resolvers
+https://www.npmjs.com/package/@hookform/resolvers
+допомагає підєднати валідацію до форми
+
+2)npm install joi
+https://joi.dev/resources/changelog/
+
+3) створюємо валідацію форми з допомогою joi
+src->validators->validator.ts
+робимо правила валідації
+const myValidator =  Joi.object({
+    firstName: Joi.string().required(),})
+
+4) підключаємо валідацію до форми resolver: joiResolver(myValidator)
+useForm<IFormData>({mode: "onSubmit", resolver: joiResolver(myValidator)})
+
+5) тут кастомна відповідь
+     firstName: Joi.string().required().min(3).messages({ "string.min": "First name must be at least 3 characters long" }),
+     в переважності дають кастомне повідомлення на регулярний вираз
+6) {valueAsNumber: true} - щоб форма віддавала як числа
+
 
 
      */
-    const {register, handleSubmit, reset, formState: {isValid, errors}} = useForm<IFormData>({mode: "onSubmit"})
+    const {register, handleSubmit, reset, formState: {isValid, errors}} = useForm<IFormData>({
+        mode: "all",
+        resolver: joiResolver(myValidator)
+    })
 
     const save = (data: IFormData) => {
         console.log(data)
@@ -89,23 +114,18 @@ formState:{errors} - повертає об'єкт помилок валідац�
     return (
         <>
             <form onSubmit={handleSubmit(save)}>
-                <input type={"text"} placeholder={'firstName'} {...register('firstName', {
-                    minLength: { value: 2, message: "First name must be at least 2 characters long" },
-                    maxLength: { value: 20, message: "First name must be at most 20 characters long" }
-
-                })}/>
-                <input type={"text"} placeholder={'price'} {...register('price', {
-                    valueAsNumber: true,
-                    min: {value: 3, message: 'min 3'},
-                    max: {value: 10000, message: 'max 10000'}
-                })}/>
-                <input type={"text"} placeholder={'adress'} {...register('adress.street')}/>
-                <input type={"text"} placeholder={'adress'} {...register('adress.house')}/>
+                <input type={"text"} placeholder={'firstName'} {...register('firstName')}/>
+                <input type={"text"} placeholder={'price'} {...register('price',{valueAsNumber: true})}/>
+                <input type={"text"} placeholder={'street'} {...register('adress.street')}/>
+                <input type={"text"} placeholder={'house'} {...register('adress.house')}/>
 
                 <button disabled={!isValid}>Submit</button>
             </form>
             {errors.firstName && <p>{errors.firstName.message}</p>}
             {errors.price && <p>{errors.price.message}</p>}
+            {errors.adress && <p>{errors.adress.message}</p>}
+
+
 
 
         </>
