@@ -41,7 +41,7 @@ const Users: FC<IProps> = () => {
             {/*Коротке замикання з ||*/}
             {/*{post || <div>No post available</div>}*/}
             {/*Цей код рендерить <div>No post available</div>, якщо post є null, undefined,
-            або іншим значенням, яке інтерпретується як хибне в контексті JavaScript.*/}
+            або іншим значенням, я ке інтерпретується як хибне в контексті JavaScript.*/}
 
 
 
