@@ -74,10 +74,11 @@ import {UsersPage} from "./pages/UsersPage";
 import {MainLayout} from "./Layout/MainLayout";
 import {Users} from "./components/Users/Users";
 import {CommentsPage} from "./pages/CommentsPage";
+import {Error} from "./components/Error/Error";
 
 const router = createBrowserRouter([
     {
-        path: '', element: <MainLayout/>, children: [
+        path: '', element: <MainLayout/>, errorElement:<Error/>, children: [
             {index: true, element: <Navigate to={'users'}/>}, //  коли користувач заходить на кореневий шлях (наприклад, example.com/), він автоматично буде перенаправлений на example.com/home.
             {path: 'users', element: <UsersPage/>, children: [
                 {path: 'all', element: <Users/>},
