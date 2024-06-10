@@ -53,7 +53,22 @@ root.render(
 https://reactrouter.com/en/main/components/nav-link
 
 */
+/*
+JSX Умовний рендеринг
 
+Логічний оператор &&
+{post && <Post post={post}/>
+Цей код рендерить компонент Post, тільки якщо post існує (не null, undefined тощо).
+
+Використання тернарного оператора ? :
+{post ? <Post post={post} /> : <div>No post available</div>}
+Цей код рендерить компонент Post, якщо post існує, і <div>No post available</div>, якщо post не існує.
+
+Коротке замикання з ||
+{post || <div>No post available</div>}
+Цей код рендерить <div>No post available</div>, якщо post є null, undefined,
+або іншим значенням, я ке інтерпретується як хибне в контексті JavaScript.
+ */
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import {UsersPage} from "./pages/UsersPage";
 import {MainLayout} from "./Layout/MainLayout";

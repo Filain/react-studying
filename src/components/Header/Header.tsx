@@ -14,6 +14,7 @@ const Header: FC<IProps> = () => {
                 <div className={css.Header}>
                     <NavLink to={"/users/all"}>users</NavLink>
                     <NavLink to={"/comments"}>comments</NavLink>
+                {/*NavLink має клас className='active' який визначає що є активним*/}
                 </div>
                 <button onClick={() => navigate(-1)}>prevPage</button>
                 <button onClick={() => navigate(1)}>nextPage</button>
