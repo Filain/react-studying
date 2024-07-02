@@ -71,6 +71,8 @@ const App: FC<IProps> = () => {
 export {App};
 
 /* unmount or unsubscribe
+при першому рендері виконається все що є в useEffect без return
+при наступному рендері в першу чергу виконається return а потім уже useEffect
 
         useEffect(() => {
             // actions performed when component mounts
@@ -79,6 +81,9 @@ export {App};
             // actions to be performed when component unmounts
         }
         }, []);
+
+        При першому
+
 
 ПРИКЛАД 1
         useEffect(() => {
