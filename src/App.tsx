@@ -69,3 +69,53 @@ const App: FC<IProps> = () => {
 };
 
 export {App};
+
+/* unmount or unsubscribe
+
+        useEffect(() => {
+            // actions performed when component mounts
+
+        return () => {
+            // actions to be performed when component unmounts
+        }
+        }, []);
+
+ПРИКЛАД 1
+        useEffect(() => {
+          let mounted = true;
+          setTimeout(() => {
+            if (mounted) {
+              setUsername('hello world');
+            }
+          }, 4000);
+
+          return () => mounted = false;
+        }, []);
+//Таким чином, коли компонент демонтується, змонтована змінна змінюється на false, і тому функція setUsername не буде оновлена, коли компонент демонтовано
+
+ПРИКЛАД 2
+
+        useEffect(() => {
+          let t = setTimeout(() => {
+            setUsername('hello world');
+          }, 4000);
+
+          return () => clearTimeout(t);
+        }, []);
+
+Ось приклад асинхронної функції з fetch API.
+
+        useEffect(() => {
+          let mounted = true;
+          (async () => {
+            const res = await fetch('example.com');
+            if (mounted) {
+              // only try to update if we are subscribed (or mounted)
+              setUsername(res.username);
+            }
+          })();
+
+          return () => mounted = false; // cleanup function
+        }, []);
+
+* */
